@@ -4,7 +4,7 @@
     {
         private Lexer lexer;
 
-        private Token currentToken;
+        private Token lookAheadToken;
 
         private Dictionary<TokenType, int> precedence = new Dictionary<TokenType, int>()
         {
@@ -31,7 +31,7 @@
         public Parser(Lexer lexer)
         {
             this.lexer = lexer ?? throw new ArgumentNullException(nameof(lexer));
-            this.currentToken = lexer.GetNextToken();
+            this.lookAheadToken = lexer.GetNextToken();
         }
 
         public Expression Parse()
@@ -43,11 +43,11 @@
         {
             var left = ParsePrimary();
 
-            while (precedence < GetPrecedence(currentToken))
+            while (precedence < GetPrecedence(lookAheadToken))
             {
-                var token = currentToken;
-                currentToken = lexer.GetNextToken();
-                left = ParseBinaryExpression(left, token);
+                var currentToken = lookAheadToken;
+                lookAheadToken = lexer.GetNextToken();
+                left = ParseBinaryExpression(left, currentToken);
             }
 
             return left;
@@ -55,19 +55,19 @@
 
         private Expression ParsePrimary()
         {
-            var token = currentToken;
-            currentToken = lexer.GetNextToken();
+            var currentToken = lookAheadToken;
+            lookAheadToken = lexer.GetNextToken();
 
-            switch (token.Type)
+            switch (currentToken.Type)
             {
                 case TokenType.Number:
-                    return new NumberExpression(int.Parse(token.Value ?? "0"));
+                    return new NumberExpression(int.Parse(currentToken.Value ?? "0"));
                 case TokenType.LeftBrace:
                     var expression = ParseExpression(0);
-                    currentToken = lexer.GetNextToken();
+                    lookAheadToken = lexer.GetNextToken();
                     return expression;
                 default:
-                    throw new ParserException($"Unexpected token type: {token.Type} '{token.Value}'");
+                    throw new ParserException($"Unexpected token type: {currentToken.Type} '{currentToken.Value}'");
             }
         }
 
