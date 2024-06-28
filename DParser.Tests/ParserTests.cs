@@ -4,6 +4,18 @@
     public class ParserTests
     {
         [TestMethod]
+        public void JustANumber()
+        {
+            string input = "1";
+            var lexer = new Lexer(input);
+            var parser = new Parser(lexer);
+            var expression = parser.Parse();
+            var result = expression.Evaluate();
+
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
         public void SimpleCalculation()
         {
             string input = "1+1";
