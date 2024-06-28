@@ -32,5 +32,10 @@
 
             return operations[this.Opertator.Type](Left.Evaluate(), Right.Evaluate());
         }
+
+        public override string ToString()
+        {
+            return $"({ Left.ToString() } { Opertator.Value } { Right.ToString() })";
+        }
     }
 }
