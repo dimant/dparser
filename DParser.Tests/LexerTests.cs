@@ -13,7 +13,7 @@ namespace DParser.Tests
                 new Token(TokenType.Number, "2")
             };
 
-            var lexer = new Lexer(input);
+            var lexer = new RegexLexer(input);
 
             var actual = new List<Token>();
 
@@ -41,7 +41,7 @@ namespace DParser.Tests
                 new Token(TokenType.Number, "1234")
             };
 
-            var lexer = new Lexer(input);
+            var lexer = new RegexLexer(input);
 
             var actual = new List<Token>();
 
@@ -69,7 +69,7 @@ namespace DParser.Tests
                 new Token(TokenType.Number, "2")
             };
 
-            var lexer = new Lexer(input);
+            var lexer = new RegexLexer(input);
 
             var actual = new List<Token>();
 
@@ -107,7 +107,7 @@ namespace DParser.Tests
                 new Token(TokenType.RightBrace, ")"),
             };
 
-            var lexer = new Lexer(input);
+            var lexer = new RegexLexer(input);
 
             var actual = new List<Token>();
 
@@ -131,7 +131,7 @@ namespace DParser.Tests
         {
             string input = "1+2*(x-(4/5))";
 
-            var lexer = new Lexer(input);
+            var lexer = new RegexLexer(input);
 
             var actual = new List<Token>();
 

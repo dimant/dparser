@@ -2,7 +2,7 @@
 
 namespace DParser
 {
-    public class Lexer
+    public class RegexLexer : IRegexLexer
     {
         private string input;
 
@@ -19,13 +19,13 @@ namespace DParser
             (@"\d+",   TokenType.Number)
         };
 
-        public Lexer(string input)
+        public RegexLexer(string input)
         {
             this.input = input ?? throw new ArgumentNullException(nameof(input));
             this.offset = 0;
         }
 
-        public bool MatchAtOffset(string input, int offset, string pattern, out string output)
+        private bool MatchAtOffset(string input, int offset, string pattern, out string output)
         {
             if (offset < 0 || offset >= input.Length)
             {

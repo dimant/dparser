@@ -7,8 +7,8 @@
         public void JustANumber()
         {
             string input = "1";
-            var lexer = new Lexer(input);
-            var parser = new Parser(lexer);
+            var lexer = new RegexLexer(input);
+            var parser = new VaughnParser(lexer);
             var expression = parser.Parse();
             var result = expression.Evaluate();
 
@@ -19,8 +19,8 @@
         public void SimpleCalculation()
         {
             string input = "1+1";
-            var lexer = new Lexer(input);
-            var parser = new Parser(lexer);
+            var lexer = new RegexLexer(input);
+            var parser = new VaughnParser(lexer);
             var expression = parser.Parse();
             var result = expression.Evaluate();
 
@@ -31,8 +31,8 @@
         public void PrecedenceCalculation()
         {
             string input = "1+1*3";
-            var lexer = new Lexer(input);
-            var parser = new Parser(lexer);
+            var lexer = new RegexLexer(input);
+            var parser = new VaughnParser(lexer);
             var expression = parser.Parse();
             var result = expression.Evaluate();
 
@@ -43,8 +43,8 @@
         public void BracesCalculation()
         {
             string input = "(1+1)*3";
-            var lexer = new Lexer(input);
-            var parser = new Parser(lexer);
+            var lexer = new RegexLexer(input);
+            var parser = new VaughnParser(lexer);
             var expression = parser.Parse();
             var result = expression.Evaluate();
 
@@ -55,8 +55,8 @@
         public void ComplexCalculation()
         {
             string input = "1+2*((23-3)/5))";
-            var lexer = new Lexer(input);
-            var parser = new Parser(lexer);
+            var lexer = new RegexLexer(input);
+            var parser = new VaughnParser(lexer);
             var expression = parser.Parse();
             var result = expression.Evaluate();
 

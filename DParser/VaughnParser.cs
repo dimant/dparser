@@ -1,8 +1,8 @@
 ﻿namespace DParser
 {
-    public class Parser
+    public class VaughnParser : IVaughnParser
     {
-        private Lexer lexer;
+        private RegexLexer lexer;
 
         private Token lookAheadToken;
 
@@ -28,7 +28,7 @@
             return 0;
         }
 
-        public Parser(Lexer lexer)
+        public VaughnParser(RegexLexer lexer)
         {
             this.lexer = lexer ?? throw new ArgumentNullException(nameof(lexer));
             this.lookAheadToken = lexer.GetNextToken();
