@@ -17,7 +17,7 @@ namespace DParser.Tests
 
             var actual = new List<Token>();
 
-            for (var token = lexer.GetNextToken(); token.Type != TokenType.EOS; token = lexer.GetNextToken())
+            for (var token = lexer.GetNext(); token.Type != TokenType.EOS; token = lexer.GetNext())
             {
                 actual.Add(token);
             }
@@ -45,7 +45,7 @@ namespace DParser.Tests
 
             var actual = new List<Token>();
 
-            for (var token = lexer.GetNextToken(); token.Type != TokenType.EOS; token = lexer.GetNextToken())
+            for (var token = lexer.GetNext(); token.Type != TokenType.EOS; token = lexer.GetNext())
             {
                 actual.Add(token);
             }
@@ -73,7 +73,7 @@ namespace DParser.Tests
 
             var actual = new List<Token>();
 
-            for (var token = lexer.GetNextToken(); token.Type != TokenType.EOS; token = lexer.GetNextToken())
+            for (var token = lexer.GetNext(); token.Type != TokenType.EOS; token = lexer.GetNext())
             {
                 actual.Add(token);
             }
@@ -111,7 +111,7 @@ namespace DParser.Tests
 
             var actual = new List<Token>();
 
-            for (var token = lexer.GetNextToken(); token.Type != TokenType.EOS; token = lexer.GetNextToken())
+            for (var token = lexer.GetNext(); token.Type != TokenType.EOS; token = lexer.GetNext())
             {
                 actual.Add(token);
             }
@@ -135,7 +135,7 @@ namespace DParser.Tests
 
             var actual = new List<Token>();
 
-            for (var token = lexer.GetNextToken(); token.Type != TokenType.EOS; token = lexer.GetNextToken())
+            for (var token = lexer.GetNext(); token.Type != TokenType.EOS; token = lexer.GetNext())
             {
                 actual.Add(token);
             }

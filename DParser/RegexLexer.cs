@@ -2,7 +2,7 @@
 
 namespace DParser
 {
-    public class RegexLexer : IRegexLexer
+    public class RegexLexer : ILexer
     {
         private string input;
 
@@ -49,7 +49,7 @@ namespace DParser
             }
         }
 
-        public Token GetNextToken()
+        public Token GetNext()
         {
             while (offset < input.Length && char.IsWhiteSpace(input[offset]))
             {
@@ -73,6 +73,11 @@ namespace DParser
             }
 
             throw new ParserException($"Unexpected token at offset {offset}: '{input}'");
+        }
+
+        public Token Peek()
+        {
+            throw new NotImplementedException();
         }
     }
 }

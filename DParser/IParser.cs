@@ -1,6 +1,6 @@
 ﻿namespace DParser
 {
-    public interface IVaughnParser
+    public interface IParser
     {
         Expression Parse();
     }

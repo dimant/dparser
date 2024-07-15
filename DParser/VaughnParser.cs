@@ -1,8 +1,8 @@
 ﻿namespace DParser
 {
-    public class VaughnParser : IVaughnParser
+    public class VaughnParser : IParser
     {
-        private RegexLexer lexer;
+        private ILexer lexer;
 
         private Token lookAheadToken;
 
@@ -28,10 +28,10 @@
             return 0;
         }
 
-        public VaughnParser(RegexLexer lexer)
+        public VaughnParser(ILexer lexer)
         {
             this.lexer = lexer ?? throw new ArgumentNullException(nameof(lexer));
-            this.lookAheadToken = lexer.GetNextToken();
+            this.lookAheadToken = lexer.GetNext();
         }
 
         public Expression Parse()
@@ -46,7 +46,7 @@
             while (precedence < GetPrecedence(lookAheadToken))
             {
                 var currentToken = lookAheadToken;
-                lookAheadToken = lexer.GetNextToken();
+                lookAheadToken = lexer.GetNext();
                 left = ParseBinaryExpression(left, currentToken);
             }
 
@@ -56,7 +56,7 @@
         private Expression ParsePrimary()
         {
             var currentToken = lookAheadToken;
-            lookAheadToken = lexer.GetNextToken();
+            lookAheadToken = lexer.GetNext();
 
             switch (currentToken.Type)
             {
@@ -64,7 +64,7 @@
                     return new NumberExpression(int.Parse(currentToken.Value ?? "0"));
                 case TokenType.LeftBrace:
                     var expression = ParseExpression(0);
-                    lookAheadToken = lexer.GetNextToken();
+                    lookAheadToken = lexer.GetNext();
                     return expression;
                 default:
                     throw new ParserException($"Unexpected token type: {currentToken.Type} '{currentToken.Value}'");
